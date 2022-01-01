@@ -1,4 +1,4 @@
-import TypesenseInstantsearchAdapter from "typesense-instantsearch-adapter";
+import TypesenseInstantsearchAdapter from 'typesense-instantsearch-adapter';
 
 let TYPESENSE_SERVER_CONFIG = {
   apiKey: process.env.REACT_APP_TYPESENSE_SEARCH_ONLY_API_KEY, // Be sure to use an API key that only allows searches, in production
@@ -16,9 +16,9 @@ let TYPESENSE_SERVER_CONFIG = {
 export const typesenseAdapter = new TypesenseInstantsearchAdapter({
   server: TYPESENSE_SERVER_CONFIG,
   additionalSearchParameters: {
-    queryBy: "title,overview,genres",
-    queryByWeights: "4,2,1",
-    numTypos: 3,
+    queryBy: 'title,abstract',
+    queryByWeights: '4,2',
+    numTypos: 1,
     typoTokensThreshold: 1,
   },
 });

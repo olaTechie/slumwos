@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=react
 
 ### react ###
+typesense-server-data
 .DS_*
 *.log
 logs

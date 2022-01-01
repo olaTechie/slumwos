@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import {
-  InstantSearch,
-  Pagination,
-  RefinementList,
-  SearchBox,
-} from 'react-instantsearch-dom';
+import { InstantSearch, Pagination, SearchBox } from 'react-instantsearch-dom';
 import { searchClient } from './typesenseAdapter';
 import MoviesHits from './components/moviesHits';
 import 'instantsearch.css/themes/satellite.css';
@@ -22,11 +17,9 @@ function App() {
   return (
     <AppContainer>
       <h2>React/Typesense Movies InstantSearch</h2>
-      <InstantSearch indexName="movies" searchClient={searchClient}>
+      <InstantSearch indexName="articles" searchClient={searchClient}>
         <h4>Search Movies</h4>
         <SearchBox />
-
-        <RefinementList attribute="genres" />
 
         <MoviesHits />
         <Pagination />
