@@ -17,7 +17,7 @@ export const typesenseAdapter = new TypesenseInstantsearchAdapter({
   server: TYPESENSE_SERVER_CONFIG,
   additionalSearchParameters: {
     queryBy: 'title,abstract',
-    queryByWeights: '4,2',
+    queryByWeights: '2,1',
     numTypos: 1,
     typoTokensThreshold: 1,
   },

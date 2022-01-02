@@ -22,8 +22,13 @@ module.exports = (async () => {
     name: 'articles',
     num_documents: 0,
     fields: [
+      // {
+      //   name: 'language',
+      //   type: 'string',
+      //   facet: true,
+      // },
       {
-        name: 'authors',
+        name: 'doc',
         type: 'string',
         facet: true,
       },
@@ -33,38 +38,13 @@ module.exports = (async () => {
         facet: false,
       },
       {
-        name: 'source',
-        type: 'string',
-        facet: true,
-      },
-      {
-        name: 'language',
-        type: 'string',
-        facet: true,
-      },
-      {
-        name: 'doc',
-        type: 'string',
-        facet: true,
-      },
-      {
         name: 'abstract',
         type: 'string',
         facet: false,
       },
       {
-        name: 'funding',
-        type: 'string',
-        facet: true,
-      },
-      {
         name: 'publisher',
         type: 'string',
-        facet: true,
-      },
-      {
-        name: 'cited',
-        type: 'int32',
         facet: true,
       },
       {
@@ -73,17 +53,7 @@ module.exports = (async () => {
         facet: true,
       },
       {
-        name: 'volume',
-        type: 'int32',
-        facet: true,
-      },
-      {
-        name: 'issue',
-        type: 'int32',
-        facet: true,
-      },
-      {
-        name: 'pages',
+        name: 'cited',
         type: 'int32',
         facet: true,
       },
@@ -113,17 +83,10 @@ module.exports = (async () => {
   await typesense.collections().create(schema);
 
   console.log('Populating collection...');
-
   // articles.forEach(async (article) => {
-  //   article.keywords.forEach((keywords, idx) => {
-  //     article[`keywords.lvl${idx}`] = [
-  //       article.keywords.slice(0, idx + 1).join('>'),
-  //     ];
-  //   });
-
-  //   //[Science Fiction], [Science Fiction > Action], [Science Fiction > Action > Adventure], [Science Fiction > Action > Adventure > Western]
+  //   delete article.year;
+  //   delete article.cited;
   // });
-
   try {
     const returnData = await typesense
       .collections('articles')

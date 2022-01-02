@@ -1,8 +1,19 @@
 import styled from 'styled-components';
-import { InstantSearch, Pagination, SearchBox } from 'react-instantsearch-dom';
+
 import { searchClient } from './typesenseAdapter';
-import MoviesHits from './components/moviesHits';
+
 import 'instantsearch.css/themes/satellite.css';
+import PropTypes from 'prop-types';
+import {
+  InstantSearch,
+  Hits,
+  SearchBox,
+  Configure,
+  DynamicWidgets,
+  RefinementList,
+  Pagination,
+  Highlight,
+} from 'react-instantsearch-dom';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -18,10 +29,16 @@ function App() {
     <AppContainer>
       <h2>React/Typesense Movies InstantSearch</h2>
       <InstantSearch indexName="articles" searchClient={searchClient}>
+        <RefinementList attribute="doc" />
         <h4>Search Movies</h4>
-        <SearchBox />
+        <SearchBox
+          className="searchbox"
+          translations={{
+            placeholder: '',
+          }}
+        />
 
-        <MoviesHits />
+        <Hits hitComponent={Hit} />
         <Pagination />
       </InstantSearch>
     </AppContainer>
@@ -29,3 +46,20 @@ function App() {
 }
 
 export default App;
+
+function Hit(props) {
+  return (
+    <article>
+      <h1>
+        <Highlight attribute="abstract" hit={props.hit} />
+      </h1>
+      <p>
+        <Highlight attribute="cited" hit={props.hit} />
+      </p>
+    </article>
+  );
+}
+
+Hit.propTypes = {
+  hit: PropTypes.object.isRequired,
+};
